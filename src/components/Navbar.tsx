@@ -15,7 +15,7 @@ function Navbar() {
           Hotéis
         </Link>
         <Link
-          to="/"
+          to="/create"
           style={{
             color: "white",
             backgroundColor: "rgb(77, 77, 77)",

@@ -28,7 +28,7 @@ function Card() {
     <div className="card">
       <h2 className="title">Hotéis</h2>
       {hotels && hotels.length ? (
-        <div>
+        <div className="hotel-list">
           {hotels?.map((hotel) => (
             <Information hotel={hotel} detailsPage={false} />
           ))}

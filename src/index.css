@@ -74,6 +74,7 @@ h1 {
 .location-image {
   border-radius: 16px;
   width: 100%;
+  min-height: 285.65px;
 }
 
 /* hotel previews / list */
@@ -86,7 +87,7 @@ h1 {
 }
 .hotel-preview {
   padding: 0px;
-  width: 60%;
+  width: 30%;
   margin: 0 auto;
   border-radius: 16px;
   background-color: white;

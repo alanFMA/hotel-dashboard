@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addHotel } from "../lib/controller";
 
 function Create() {
   const [title, setTitle] = useState("");
@@ -17,6 +18,18 @@ function Create() {
 
   const addNewHotel = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addHotel({
+      title,
+      description,
+      feature,
+      location,
+      stars,
+      region,
+      country,
+      review,
+      totalPrice,
+      perNight,
+    });
     console.log("successfully added a new hotel");
     navigate("/");
   };

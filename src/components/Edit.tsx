@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import { updateHotel } from "../lib/controller";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   editDescription: boolean;
   setEditDescription: React.Dispatch<React.SetStateAction<boolean>>;
+  id?: string;
 }
 
-function Edit({ editDescription, setEditDescription }: IProps) {
+function Edit({ editDescription, setEditDescription, id }: IProps) {
   const [newDescription, setNewDescription] = useState("");
+
+  const navigate = useNavigate();
+
   const handleUpdate = () => {
     // atualizar descrição
+    updateHotel(id, { description: newDescription });
     setEditDescription(!editDescription);
     // navegar para homepage
+    navigate("/");
   };
 
   return (

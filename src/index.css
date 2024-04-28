@@ -77,8 +77,8 @@ h1 {
   height: 100%;
   min-height: 36vh;
 
-  @media screen and (max-width: 998px) {
-    width: 100%;
+  @media screen and (min-width: 998px) {
+    height: 40vh;
   }
 }
 
@@ -98,10 +98,10 @@ h1 {
   gap: 20px;
   max-width: 1400px;
 }
+
 .hotel-preview {
   padding: 0px;
   width: 30%;
-  min-height: 100%;
   margin: 0 auto;
   border-radius: 16px;
   background-color: white;

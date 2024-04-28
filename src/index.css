@@ -74,7 +74,19 @@ h1 {
 .location-image {
   border-radius: 16px;
   width: 100%;
-  min-height: 285.65px;
+  height: 100%;
+  min-height: 36vh;
+
+  @media screen and (max-width: 998px) {
+    width: 100%;
+  }
+}
+
+.card {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* hotel previews / list */
@@ -84,10 +96,12 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  max-width: 1400px;
 }
 .hotel-preview {
   padding: 0px;
   width: 30%;
+  min-height: 100%;
   margin: 0 auto;
   border-radius: 16px;
   background-color: white;
@@ -95,6 +109,10 @@ h1 {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  @media screen and (max-width: 998px) {
+    width: 40%;
+  }
 }
 .hotel-preview:hover {
   border: 2px solid rgb(77, 77, 77);

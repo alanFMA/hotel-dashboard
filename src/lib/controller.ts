@@ -6,7 +6,7 @@ import {
   getFirestore,
   setDoc,
 } from "firebase/firestore";
-import { app } from "./firebase";
+import  app  from "./firebase";
 import { AddHotelType } from "../types/hotel";
 import { NavigateFunction } from "react-router-dom";
 

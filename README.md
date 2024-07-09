@@ -34,15 +34,15 @@ Este é um aplicativo CRUD que permite adicionar, visualizar, deletar e atualiza
 
 1. Clone o repositório:
 
-```bash
+````bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
-```
+```git
 
 2. Instale as dependências:
 
 ```bash
 npm install
-```
+````
 
 3. Execute o projeto:
 

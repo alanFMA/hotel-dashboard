@@ -36,7 +36,7 @@ Este é um aplicativo CRUD que permite adicionar, visualizar, deletar e atualiza
 
 ````bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
-```git
+````
 
 2. Instale as dependências:
 

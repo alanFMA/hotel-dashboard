@@ -18,7 +18,7 @@ Este é um aplicativo CRUD que permite adicionar, visualizar, deletar e atualiza
   <span>React</span>
 </p>
 <p style="display: flex; align-items: center;">
-  <img src="https://skillicons.dev/icons?i=firebase" width="25px" height="25px"/> - <span>React</span>
+  <img src="https://skillicons.dev/icons?i=firebase" width="25px" height="25px"/> - <span>Firebase</span>
 </p>
 <p style="display: flex; align-items: center;">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" width="24px" heigth="25px" style="margin-right: 3px;"/> - React Router

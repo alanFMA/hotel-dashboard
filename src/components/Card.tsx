@@ -31,10 +31,10 @@ function Card() {
       return Number(a.perNight) - Number(b.perNight);
     }
     if (sort === 'stars') {
-      return Number(a.stars) - Number(b.stars);
+      return Number(b.stars) - Number(a.stars);
     }
     if (sort === 'review') {
-      return Number(a.review) - Number(b.review);
+      return Number(b.review) - Number(a.review);
     }
     return 0;
   });

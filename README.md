@@ -13,19 +13,22 @@ Este é um aplicativo CRUD que permite adicionar, visualizar, deletar e atualiza
 
 ## Tecnologias Utilizadas
 
-<p style="display: flex; align-items: center;">
+<div style="display: flex; align-items: center;">
   <img src="https://skillicons.dev/icons?i=react" width="25px" height="25px"/>
-  <span>React</span>
-</p>
-<p style="display: flex; align-items: center;">
-  <img src="https://skillicons.dev/icons?i=firebase" width="25px" height="25px"/> - <span>React</span>
-</p>
-<p style="display: flex; align-items: center;">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" width="24px" heigth="25px" style="margin-right: 3px;"/> - React Router
-</p>
-<p style="display: flex; align-items: center;">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="25px" height="25px" style="margin-right: 3px;"/> - Typescript
-</p>
+  <p> - React</p>
+</div>
+<div style="display: flex; align-items: center;">
+  <img src="https://skillicons.dev/icons?i=firebase" width="25px" height="25px"/>
+  <p> - Firebase</p>
+</div>
+<div style="display: flex; align-items: center;">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" width="24px" heigth="25px" style="margin-right: 3px;"/>
+  <p> - React Router</p>
+</div>
+<div style="display: flex; align-items: center;">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="25px" height="25px" style="margin-right: 3px;"/>
+  <p> - Typescript</p>
+</div>
 
 ## Instalação
 

@@ -2,11 +2,12 @@ import {
   type Auth,
   type User as FirebaseUser,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
 import { User } from '../../domain/entities/User';
-import type { IAuthService } from '../../domain/repositories/IAuthService';
+import type { AuthStateUnsubscribe, IAuthService } from '../../domain/repositories/IAuthService';
 
 export class FirebaseAuthService implements IAuthService {
   private readonly provider = new GoogleAuthProvider();
@@ -29,6 +30,12 @@ export class FirebaseAuthService implements IAuthService {
 
   getCurrentUser(): User | null {
     return this.toDomainUser(this.auth.currentUser);
+  }
+
+  onAuthStateChanged(callback: (user: User | null) => void): AuthStateUnsubscribe {
+    return onAuthStateChanged(this.auth, (firebaseUser) => {
+      callback(this.toDomainUser(firebaseUser));
+    });
   }
 
   private toDomainUser(firebaseUser: FirebaseUser | null): User | null {

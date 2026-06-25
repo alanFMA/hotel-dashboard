@@ -6,6 +6,7 @@ import { UpdateHotelUseCase } from '../../application/use-cases/UpdateHotelUseCa
 import { DeleteHotelUseCase } from '../../application/use-cases/DeleteHotelUseCase';
 import { GetFilteredHotelsUseCase } from '../../application/use-cases/GetFilteredHotelsUseCase';
 import { GetHotelByIdUseCase } from '../../application/use-cases/GetHotelByIdUseCase';
+import { SeedDemoHotelsUseCase } from '../../application/use-cases/SeedDemoHotelsUseCase';
 
 export const hotelRepository = new FirebaseHotelRepository(firestore);
 export const authService = new FirebaseAuthService(auth);
@@ -15,3 +16,4 @@ export const updateHotelUseCase = new UpdateHotelUseCase(hotelRepository);
 export const deleteHotelUseCase = new DeleteHotelUseCase(hotelRepository);
 export const getFilteredHotelsUseCase = new GetFilteredHotelsUseCase(hotelRepository);
 export const getHotelByIdUseCase = new GetHotelByIdUseCase(hotelRepository);
+export const seedDemoHotelsUseCase = new SeedDemoHotelsUseCase(hotelRepository);

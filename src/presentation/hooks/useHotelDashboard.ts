@@ -3,6 +3,7 @@ import {
   createHotelUseCase as defaultCreateHotelUseCase,
   deleteHotelUseCase as defaultDeleteHotelUseCase,
   getFilteredHotelsUseCase as defaultGetFilteredHotelsUseCase,
+  seedDemoHotelsUseCase as defaultSeedDemoHotelsUseCase,
   updateHotelUseCase as defaultUpdateHotelUseCase,
 } from '../composition/container';
 import type { Hotel } from '../../domain/entities/Hotel';
@@ -13,6 +14,7 @@ import type {
   GetFilteredHotelsUseCase,
   HotelFilterCriteria,
 } from '../../application/use-cases/GetFilteredHotelsUseCase';
+import type { SeedDemoHotelsUseCase } from '../../application/use-cases/SeedDemoHotelsUseCase';
 import type { UpdateHotelInput, UpdateHotelUseCase } from '../../application/use-cases/UpdateHotelUseCase';
 
 export type HotelDashboardStatus = 'loading' | 'success' | 'error';
@@ -22,6 +24,7 @@ export interface UseHotelDashboardDeps {
   createHotel: CreateHotelUseCase;
   updateHotel: UpdateHotelUseCase;
   deleteHotel: DeleteHotelUseCase;
+  seedDemoHotels: SeedDemoHotelsUseCase;
 }
 
 const defaultDeps: UseHotelDashboardDeps = {
@@ -29,6 +32,7 @@ const defaultDeps: UseHotelDashboardDeps = {
   createHotel: defaultCreateHotelUseCase,
   updateHotel: defaultUpdateHotelUseCase,
   deleteHotel: defaultDeleteHotelUseCase,
+  seedDemoHotels: defaultSeedDemoHotelsUseCase,
 };
 
 export interface UseHotelDashboardResult {
@@ -40,6 +44,7 @@ export interface UseHotelDashboardResult {
   createHotel: (input: CreateHotelInput) => Promise<void>;
   updateHotel: (id: string, changes: UpdateHotelInput) => Promise<void>;
   deleteHotel: (id: string) => Promise<void>;
+  seedDemoHotels: () => Promise<void>;
 }
 
 export function useHotelDashboard(
@@ -102,5 +107,20 @@ export function useHotelDashboard(
     [deps, filters, load],
   );
 
-  return { status, hotels, error, filters, applyFilters, createHotel, updateHotel, deleteHotel };
+  const seedDemoHotels = useCallback(async () => {
+    await deps.seedDemoHotels.execute();
+    await load(filters);
+  }, [deps, filters, load]);
+
+  return {
+    status,
+    hotels,
+    error,
+    filters,
+    applyFilters,
+    createHotel,
+    updateHotel,
+    deleteHotel,
+    seedDemoHotels,
+  };
 }

@@ -21,7 +21,7 @@ const DEFAULT_FILTERS: HotelFilterValues = {
 
 export function DashboardPage() {
   const navigate = useNavigate();
-  const { status, hotels, error, applyFilters, deleteHotel } = useHotelDashboard();
+  const { status, hotels, error, applyFilters, deleteHotel, seedDemoHotels } = useHotelDashboard();
   const [filterValues, setFilterValues] = useState<HotelFilterValues>(DEFAULT_FILTERS);
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
 
@@ -68,9 +68,14 @@ export function DashboardPage() {
       <section className="flex-1">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="font-display text-2xl font-semibold text-ink">Hotéis</h1>
-          <Button type="button" onClick={() => navigate('/hotels/new')}>
-            Cadastrar hotel
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button type="button" variant="ghost" onClick={() => void seedDemoHotels()}>
+              Restaurar dados de demonstração
+            </Button>
+            <Button type="button" onClick={() => navigate('/hotels/new')}>
+              Cadastrar hotel
+            </Button>
+          </div>
         </div>
 
         {error && (

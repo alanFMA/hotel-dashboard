@@ -5,6 +5,7 @@ import { CreateHotelUseCase } from '../../application/use-cases/CreateHotelUseCa
 import { UpdateHotelUseCase } from '../../application/use-cases/UpdateHotelUseCase';
 import { DeleteHotelUseCase } from '../../application/use-cases/DeleteHotelUseCase';
 import { GetFilteredHotelsUseCase } from '../../application/use-cases/GetFilteredHotelsUseCase';
+import { SeedDemoHotelsUseCase } from '../../application/use-cases/SeedDemoHotelsUseCase';
 import { InMemoryHotelRepository } from '../../test/doubles/InMemoryHotelRepository';
 import { useHotelDashboard } from './useHotelDashboard';
 
@@ -39,6 +40,7 @@ function buildDeps() {
       createHotel: new CreateHotelUseCase(repository, () => 'hotel-3'),
       updateHotel: new UpdateHotelUseCase(repository),
       deleteHotel: new DeleteHotelUseCase(repository),
+      seedDemoHotels: new SeedDemoHotelsUseCase(repository),
     },
   };
 }
@@ -112,5 +114,18 @@ describe('useHotelDashboard', () => {
       await result.current.deleteHotel('hotel-3');
     });
     expect(result.current.hotels).toEqual([]);
+  });
+
+  it('restores the demo catalog via seedDemoHotels', async () => {
+    const { deps } = buildDeps();
+    const { result } = renderHook(() => useHotelDashboard(deps));
+    await waitFor(() => expect(result.current.status).toBe('success'));
+    expect(result.current.hotels).toEqual([]);
+
+    await act(async () => {
+      await result.current.seedDemoHotels();
+    });
+
+    expect(result.current.hotels.length).toBeGreaterThan(0);
   });
 });

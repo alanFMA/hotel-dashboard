@@ -23,7 +23,16 @@ export class FirebaseHotelRepository implements IHotelRepository {
 
   async findAll(): Promise<Hotel[]> {
     const snapshot = await getDocs(collection(this.firestore, HOTELS_COLLECTION));
-    return snapshot.docs.map((document) => this.toHotel(document.id, document.data()));
+    const hotels: Hotel[] = [];
+
+    for (const document of snapshot.docs) {
+      const hotel = this.toHotel(document.id, document.data());
+      if (hotel) {
+        hotels.push(hotel);
+      }
+    }
+
+    return hotels;
   }
 
   async findById(id: string): Promise<Hotel | null> {
@@ -59,7 +68,15 @@ export class FirebaseHotelRepository implements IHotelRepository {
     };
   }
 
-  private toHotel(id: string, data: Record<string, unknown>): Hotel {
-    return Hotel.create({ ...data, id } as HotelProps);
+  private toHotel(id: string, data: Record<string, unknown>): Hotel | null {
+    try {
+      return Hotel.create({ ...data, id } as HotelProps);
+    } catch {
+      // Skip documents that don't match the current Hotel schema (e.g.
+      // records left over from a previous, incompatible data model)
+      // instead of failing the whole listing.
+      console.warn(`Skipping Firestore document "hotels/${id}": incompatible with Hotel schema.`);
+      return null;
+    }
   }
 }

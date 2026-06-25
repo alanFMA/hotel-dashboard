@@ -1,8 +1,13 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { Hotel } from '../../domain/entities/Hotel';
 import { FirebaseHotelRepository } from './FirebaseHotelRepository';
-import { clearFirestoreEmulatorData, createTestFirebaseEnv } from '../../test/integration/firebaseTestEnv';
+import {
+  type TestFirebaseEnv,
+  clearFirestoreEmulatorData,
+  createTestFirebaseEnv,
+} from '../../test/integration/firebaseTestEnv';
 
 const buildHotel = () =>
   Hotel.create({
@@ -18,10 +23,11 @@ const buildHotel = () =>
 
 describe('FirebaseHotelRepository (integration)', () => {
   describe('as an authenticated user', () => {
+    let env: TestFirebaseEnv;
     let repository: FirebaseHotelRepository;
 
     beforeAll(async () => {
-      const env = createTestFirebaseEnv();
+      env = createTestFirebaseEnv();
       await createUserWithEmailAndPassword(
         env.auth,
         'tester@hotel-dashboard.test',
@@ -70,6 +76,20 @@ describe('FirebaseHotelRepository (integration)', () => {
       await repository.delete('hotel-1');
 
       expect(await repository.findById('hotel-1')).toBeNull();
+    });
+
+    it('skips documents that do not match the current Hotel schema', async () => {
+      await setDoc(doc(env.firestore, 'hotels', 'legacy-hotel'), {
+        title: 'Old Hotel',
+        stars: '4',
+        perNight: '350',
+      });
+      await repository.save(buildHotel());
+
+      const all = await repository.findAll();
+
+      expect(all.map((hotel) => hotel.id)).toEqual(['hotel-1']);
+      expect(await repository.findById('legacy-hotel')).toBeNull();
     });
   });
 

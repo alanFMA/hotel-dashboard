@@ -24,6 +24,8 @@ firebase-debug.log
 firestore-debug.log
 ui-debug.log
 .firebase
+*firebase-adminsdk*.json
+*serviceAccountKey*.json
 
 npm-debug.log*
 yarn-debug.log*

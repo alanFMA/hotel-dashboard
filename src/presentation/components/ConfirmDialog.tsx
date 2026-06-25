@@ -25,7 +25,7 @@ export function ConfirmDialog({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
       <div
         role="alertdialog"
         aria-modal="true"

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-canvas: #f8fafc;
   --color-surface: #ffffff;
@@ -19,8 +21,27 @@
     0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
 }
 
+/*
+ * Dark mode re-defines the same design tokens instead of sprinkling
+ * `dark:` variants across every component: any utility built on
+ * bg-canvas/bg-surface/text-ink/text-muted/border-border automatically
+ * follows the active theme.
+ */
+.dark {
+  --color-canvas: #0f172a;
+  --color-surface: #1e293b;
+  --color-ink: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-premium-surface: #451a03;
+  --color-border: #334155;
+
+  --shadow-card:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+}
+
 body {
   background-color: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

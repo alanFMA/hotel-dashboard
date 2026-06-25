@@ -1,0 +1,46 @@
+name: Code Quality & Continuous Integration
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  quality-assurance:
+    name: Lint, Typecheck and Test Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Validate Code Linting (Strict Check)
+        run: npm run lint
+
+      - name: Verify TypeScript Compilation Integrity
+        run: npm run typecheck
+
+      - name: Run Unit & Integration Tests Suite (Vitest)
+        run: npm run test:unit
+
+      - name: Run Firebase Emulator Integration Tests
+        run: npm run test:integration
+
+      - name: Install Playwright E2E Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run End-to-End Testing Suite
+        run: npm run test:e2e
+
+      - name: Execute Production Build
+        run: npm run build

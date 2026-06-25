@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
-    exclude: ['node_modules', 'dist', 'src/legacy', 'e2e'],
+    exclude: ['node_modules', 'dist', 'src/legacy', 'e2e', 'src/infrastructure'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],

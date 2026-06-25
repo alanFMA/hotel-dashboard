@@ -14,6 +14,7 @@
     "@eslint/js": "^10.0.1",
     "@firebase/rules-unit-testing": "^5.0.1",
     "@playwright/test": "^1.61.1",
+    "@tailwindcss/vite": "^4.3.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -29,6 +30,7 @@
     "firebase-tools": "^15.22.2",
     "jsdom": "^29.1.1",
     "prettier": "^3.8.4",
+    "tailwindcss": "^4.3.1",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.62.0",
     "vite": "^5.2.10",
@@ -43,6 +45,6 @@
     "format": "prettier --write .",
     "test:unit": "vitest run",
     "test:integration": "firebase emulators:exec --project demo-hotel-dashboard --only firestore,auth \"vitest run --config vitest.integration.config.ts\"",
-    "test:e2e": "playwright test"
+    "test:e2e": "firebase emulators:exec --project demo-hotel-dashboard --only firestore,auth \"playwright test\""
   }
 }

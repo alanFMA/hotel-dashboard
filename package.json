@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "firebase": "^10.10.0",
+    "firebase": "^12.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@firebase/rules-unit-testing": "^5.0.1",
     "@playwright/test": "^1.61.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^13.4.0",
@@ -25,6 +26,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
+    "firebase-tools": "^15.22.2",
     "jsdom": "^29.1.1",
     "prettier": "^3.8.4",
     "typescript": "^5.4.5",
@@ -40,6 +42,7 @@
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "test:unit": "vitest run",
+    "test:integration": "firebase emulators:exec --project demo-hotel-dashboard --only firestore,auth \"vitest run --config vitest.integration.config.ts\"",
     "test:e2e": "playwright test"
   }
 }

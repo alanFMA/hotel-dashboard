@@ -26,7 +26,7 @@ export function HotelCard({ hotel, onSelect }: HotelCardProps) {
       <button
         type="button"
         onClick={() => onSelect?.(hotel.id)}
-        className="block w-full text-left"
+        className="block w-full cursor-pointer text-left"
       >
         <div className="aspect-video w-full overflow-hidden">
           <img src={hotel.imageUrl} alt={hotel.name} className="h-full w-full object-cover" />

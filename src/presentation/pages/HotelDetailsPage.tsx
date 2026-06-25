@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { HotelForm } from '../components/HotelForm';
@@ -35,11 +35,25 @@ export function HotelDetailsPage() {
   }
 
   if (!hotel) {
-    return <p className="p-6 text-sm text-destructive">Hotel não encontrado.</p>;
+    return (
+      <main className="mx-auto flex max-w-xl flex-col gap-4 p-6">
+        <p className="text-sm text-destructive">Hotel não encontrado.</p>
+        <Link to="/" className="text-sm font-medium text-brand underline">
+          ← Voltar para a lista
+        </Link>
+      </main>
+    );
   }
 
   return (
     <main className="mx-auto flex max-w-xl flex-col gap-6 p-6">
+      <Link
+        to="/"
+        className="inline-flex w-fit items-center gap-1 text-sm font-medium text-brand underline"
+      >
+        ← Voltar para a lista
+      </Link>
+
       <div className="flex items-center justify-between">
         <h1 className="font-display text-2xl font-semibold text-ink">{hotel.name}</h1>
         <Button type="button" variant="destructive" onClick={() => setConfirmingDelete(true)}>
